@@ -1,0 +1,33 @@
+#!/bin/sh
+
+####################################################################################################
+# goldencli                                                                                        #
+####################################################################################################
+# This script is used to run the goldencli in a Unix environment.                                  #
+# Requires Java 21 or higher to run.                                                               #
+# goldencli references a Java uber jar that contains all the dependencies required to run.         #
+####################################################################################################
+
+# Retrieve the root of the project
+BASE="$(dirname "$0")/.."
+
+# Make sure java is installed
+if ! command -v java &> /dev/null; then
+  echo "Error: java not found"
+  exit 1
+fi
+
+# Locate the uber jar that contains trazadera-golden-cli and jar-with-dependencies.jar
+# Make sure the uber jar exists
+JAR=$(find "$BASE/target" -name "trazadera-golden-cli-*-jar-with-dependencies.jar" | head -n 1)
+if [ ! -f "$JAR" ]; then
+  echo "Error: goldencli jar not found"
+  echo "Please run the following command to build the goldencli jar:"
+  echo "mvn clean package"
+  exit 1
+fi
+
+# Run the goldencli passing all arguments
+java -jar "$JAR" "$@"
+
+
