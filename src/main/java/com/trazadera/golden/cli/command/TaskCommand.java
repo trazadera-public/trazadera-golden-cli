@@ -27,7 +27,7 @@ public class TaskCommand extends BaseCommand {
                 int pageSize = getIntegerOption(context, OPTION_PAGE_SIZE, OPTION_DEFAULT_PAGE_SIZE);
                 String filterByStatus = null;
                 String sortByDate = null;
-                yield taskApi.getTaskInstancesCall(page, pageSize, filterByStatus, sortByDate, null, null);
+                yield taskApi.listTaskInstancesCall(page, pageSize, filterByStatus, sortByDate, null, null);
             }
             default -> null;
         };

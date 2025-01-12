@@ -24,7 +24,7 @@ public class EntityCommand extends BaseCommand {
     public Call execute(Context context) throws Exception {
         EntityApi entityApi = new EntityApi(context.getApiClient());
         Call call = switch (context.getSubcommand()) {
-            case "list" -> entityApi.getEntitiesCall(null, null);
+            case "list" -> entityApi.getAllEntitiesCall(null, null);
             case "show" -> entityApi.getEntityCall(getOption(context, OPTION_ENTITY), null, null);
             default -> null;
         };

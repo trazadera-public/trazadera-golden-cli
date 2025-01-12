@@ -3,10 +3,11 @@ package com.trazadera.golden.cli.command;
 import com.squareup.okhttp.Call;
 import com.trazadera.golden.cli.Context;
 import com.trazadera.golden.restclient.api.GoldenApi;
-import com.trazadera.golden.restclient.api.UserApi;
 import com.trazadera.golden.restclient.model.GoldenBucketFullResponseDto;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
+
+import java.util.List;
 
 public class GoldenCommand extends BaseCommand {
 
@@ -65,7 +66,7 @@ public class GoldenCommand extends BaseCommand {
                 String entity = getOption(context, OPTION_ENTITY);
                 String index = getOption(context, OPTION_INDEX);
                 String classification = getOption(context, OPTION_CLASSIFICATION);
-                String sorting = null;
+                List<String> sorting = null;
                 Integer page = getIntegerOption(context, OPTION_PAGE, 0);
                 Integer pageSize = getIntegerOption(context, OPTION_PAGE_SIZE, 10);
                 yield goldenApi.getBucketsCall(entity, page, pageSize, index, classification, sorting, null, null);

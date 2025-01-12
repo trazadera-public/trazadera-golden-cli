@@ -33,27 +33,27 @@ public class GoldenPrinter {
      */
     public String formatHelp(Options options) {
         return AsciiTable.getTable(AsciiTable.NO_BORDERS, options.getOptions(), List.of(
-                new Column().dataAlign(HorizontalAlign.LEFT).minWidth(CMD_WIDTH).with(o -> {
-                    StringBuilder sb = new StringBuilder(CMD_SPACER);
-                    boolean sep = false;
-                    if (o.getOpt() != null && o.getOpt().trim().length() > 0) {
-                        sb.append("-").append(o.getOpt());
-                        sep = true;
-                    }
-                    if (o.getLongOpt() != null && o.getLongOpt().trim().length() > 0) {
-                        if (sep) sb.append(", ");
-                        sb.append("--").append(o.getLongOpt());
-                    }
-                    if (o.hasArg()) {
-                        sb.append(" <").append(o.getArgName()).append(">");
-                    }
-                    return sb.toString();
-                }),
-                new Column().dataAlign(HorizontalAlign.LEFT).with(o -> {
-                    StringBuilder sb = new StringBuilder(o.getDescription() + ".");
-                    sb.append(o.isRequired() ?" Required." :" Optional.");
-                    return sb.toString();
-                }))
+            new Column().dataAlign(HorizontalAlign.LEFT).minWidth(CMD_WIDTH).with(o -> {
+                StringBuilder sb = new StringBuilder(CMD_SPACER);
+                boolean sep = false;
+                if (o.getOpt() != null && o.getOpt().trim().length() > 0) {
+                    sb.append("-").append(o.getOpt());
+                    sep = true;
+                }
+                if (o.getLongOpt() != null && o.getLongOpt().trim().length() > 0) {
+                    if (sep) sb.append(", ");
+                    sb.append("--").append(o.getLongOpt());
+                }
+                if (o.hasArg()) {
+                    sb.append(" <").append(o.getArgName()).append(">");
+                }
+                return sb.toString();
+            }),
+            new Column().dataAlign(HorizontalAlign.LEFT).with(o -> {
+                StringBuilder sb = new StringBuilder(o.getDescription() + ".");
+                sb.append(o.isRequired() ?" Required." :" Optional.");
+                return sb.toString();
+            }))
         );
     }
 

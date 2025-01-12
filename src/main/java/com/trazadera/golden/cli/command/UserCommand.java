@@ -2,8 +2,8 @@ package com.trazadera.golden.cli.command;
 
 import com.squareup.okhttp.Call;
 import com.trazadera.golden.cli.Context;
+import com.trazadera.golden.restclient.api.SecurityApi;
 import com.trazadera.golden.restclient.api.TaskApi;
-import com.trazadera.golden.restclient.api.UserApi;
 
 public class UserCommand extends BaseCommand {
 
@@ -21,7 +21,7 @@ public class UserCommand extends BaseCommand {
 
     @Override
     public Call execute(Context context) throws Exception {
-        UserApi userApi = new UserApi(context.getApiClient());
+        SecurityApi userApi = new SecurityApi(context.getApiClient());
         return switch (context.getSubcommand()) {
             case "list" -> userApi.findAllUsersCall(null, null);
             default -> null;

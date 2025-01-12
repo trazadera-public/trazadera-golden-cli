@@ -2,8 +2,7 @@ package com.trazadera.golden.cli.command;
 
 import com.squareup.okhttp.Call;
 import com.trazadera.golden.cli.Context;
-import com.trazadera.golden.restclient.api.TokenApi;
-import com.trazadera.golden.restclient.api.UserApi;
+import com.trazadera.golden.restclient.api.SecurityApi;
 
 public class TokenCommand extends BaseCommand {
 
@@ -21,7 +20,7 @@ public class TokenCommand extends BaseCommand {
 
     @Override
     public Call execute(Context context) throws Exception {
-        TokenApi tokenApi = new TokenApi(context.getApiClient());
+        SecurityApi tokenApi = new SecurityApi(context.getApiClient());
         return switch (context.getSubcommand()) {
             case "list" -> tokenApi.findAllTokensCall(null, null);
             default -> null;
